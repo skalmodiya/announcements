@@ -4,9 +4,12 @@ sap.ui.define([
 	"sap/m/Text",
 	"sap/m/Button",
 	"sap/m/VBox",
+	"sap/m/HBox",
 	"sap/m/Image",
-	"sap/m/Label"
-], (UIComponent,Dialog,Text,Button,VBox,Image,Label) => {
+	"sap/m/Label",
+	"sap/m/Link",
+	"sap/m/FormattedText"
+], (UIComponent,Dialog,Text,Button,VBox,HBox,Image,Label,Link,FormattedText) => {
     "use strict";
 
     return UIComponent.extend("www.xyz.com.announcements.Component", {
@@ -36,37 +39,37 @@ sap.ui.define([
 
 		_showProfileDialog: function() {
 			var oDialog = new Dialog({
-				contentWidth: "30rem",
-				title: "User Profile",
+				contentWidth: "40rem",
+				title: "Announcement",
 				type: "Message",
 				content: new VBox({
-					alignItems: "Center",
+					alignItems: "Start",
 					class: "sapUiMediumMargin",
 					items: [
-						new Image({
-							src: "https://ui5.sap.com/test-resources/sap/m/images/Woman_avatar_02.png",
-							width: "120px",
-							height: "120px",
-							class: "sapUiMediumMarginBottom"
-						}).addStyleClass("profileImage"),
-						new VBox({
-							alignItems: "Center",
+						new HBox({
+							alignItems: "Start",
+							justifyContent: "SpaceBetween",
 							items: [
-								new Label({
-									text: "Sarah Johnson",
-									design: "Bold"
-								}).addStyleClass("sapUiMediumMarginBottom"),
-								new Label({
-									text: "Senior Developer",
-									design: "Standard"
-								}).addStyleClass("sapUiSmallMarginBottom"),
-								new Label({
-									text: "sarah.johnson@company.com"
-								}).addStyleClass("sapUiSmallMarginBottom"),
-								new Text({
-									text: "Experienced full-stack developer with expertise in SAP UI5, JavaScript, and modern web technologies. Passionate about creating user-friendly applications.",
-									textAlign: "Center"
-								}).addStyleClass("sapUiMediumMarginTop")
+								new VBox({
+									width: "60%",
+									items: [
+										new Text({
+											text: "Dear Colleagues,\n\nAs part of our continuous commitment to enhancing your experience, the Human Capital Annual Single Customer Survey is now available until 31st October 2025.\n\n"
+										}),
+										new FormattedText({
+											htmlText: 'Please access the survey by clicking <a href="https://qatargas.qualtrics.com/jfe/form/SV_5zNR8D5mFaVJLng" target="_blank">here</a>.'
+										}),
+										new Text({
+											text: "\nThank you for your valuable time and participation."
+										})
+									]
+								}),
+								new Image({
+									src: sap.ui.require.toUrl("www/xyz/com/announcements") + "/announcements.png",
+									width: "120px",
+									height: "120px",
+									class: "sapUiMediumMarginLeft"
+								})
 							]
 						})
 					]
